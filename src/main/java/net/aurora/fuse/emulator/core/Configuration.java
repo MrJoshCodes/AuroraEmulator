@@ -6,14 +6,13 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.aurora.fuse.emulator.Aurora;
 
 /**
  * The configuration class can be used to read a configuration file and store the values.
  * @author Josh
  */
 public class Configuration {
-    
-    private static final Logger LOGGER = Logger.getLogger("net.aurora.fuse.emulator.core.Configuration");
     
     /**
      * The properties object holding the configuration values.
@@ -29,9 +28,9 @@ public class Configuration {
             _properties = new Properties();
             _properties.load(new FileInputStream(file));
         } catch (FileNotFoundException ex) {
-            LOGGER.log(Level.SEVERE, "Cannot find ''{0}''!", file);
+            Aurora.LOGGER.log(Level.SEVERE, "Cannot find ''{0}''!", file);
         } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, "Cannot read the file ''{0}'', '{1}", new Object[] { file, ex.getMessage() });
+            Aurora.LOGGER.log(Level.SEVERE, "Cannot read the file ''{0}'', '{1}", new Object[] { file, ex.getMessage() });
         }
     }
     
@@ -44,7 +43,7 @@ public class Configuration {
         String value = _properties.getProperty(key);
         
         if (value == null) {
-            LOGGER.log(Level.WARNING, "Cannot find value by key ''{0}'', empty string returned!", key);
+            Aurora.LOGGER.log(Level.WARNING, "Cannot find value by key ''{0}'', empty string returned!", key);
             
             return "";
         }
@@ -63,7 +62,7 @@ public class Configuration {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            LOGGER.log(Level.WARNING, "Cannot convert ''{0}'' into an integer, invalid number, -1 returned!", value);
+            Aurora.LOGGER.log(Level.WARNING, "Cannot convert ''{0}'' into an integer, invalid number, -1 returned!", value);
             
             return -1;
         }

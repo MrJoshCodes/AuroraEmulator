@@ -9,7 +9,7 @@ import net.aurora.fuse.emulator.core.Configuration;
  */
 public class Aurora {
     
-    private static final Logger LOGGER = Logger.getLogger("net.aurora.fuse.emulator.Aurora");
+    public static final Logger LOGGER = Logger.getLogger("AuroraEmulator");
     
     private static Configuration _database_configuration;
     
