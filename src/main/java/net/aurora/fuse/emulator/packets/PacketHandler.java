@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.logging.Level;
 import net.aurora.fuse.emulator.Aurora;
 import net.aurora.fuse.emulator.game.gameclients.GameClient;
+import net.aurora.fuse.emulator.packets.events.handshake.GenerateKeyEvent;
 import net.aurora.fuse.emulator.packets.types.ClientMessage;
 
 /**
@@ -24,6 +25,7 @@ public class PacketHandler {
     public PacketHandler() {
         packetEvents = new THashMap<>();
         
+        packetEvents.put(202, new GenerateKeyEvent());
     }
     
     /**

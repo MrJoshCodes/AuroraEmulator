@@ -40,7 +40,9 @@ public class ServerMessage {
      */
     public void writeString(String value, int delim) {
         packet.writeBytes(value.getBytes());
-        packet.writeByte(delim);
+        
+        if (delim > 0)
+            packet.writeByte(delim);
     }
     
     /**
