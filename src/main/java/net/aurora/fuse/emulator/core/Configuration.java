@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.aurora.fuse.emulator.Aurora;
 
 /**
@@ -17,7 +16,7 @@ public class Configuration {
     /**
      * The properties object holding the configuration values.
      */
-    private Properties _properties;
+    private Properties properties;
     
     /**
      * Creates a new instance of the configuration file, storing all the values from the specified file.
@@ -25,8 +24,8 @@ public class Configuration {
      */
     public Configuration(String file) {
         try {
-            _properties = new Properties();
-            _properties.load(new FileInputStream(file));
+            properties = new Properties();
+            properties.load(new FileInputStream(file));
         } catch (FileNotFoundException ex) {
             Aurora.LOGGER.log(Level.SEVERE, "Cannot find ''{0}''!", file);
         } catch (IOException ex) {
@@ -40,7 +39,7 @@ public class Configuration {
      * @return The value as a String, or an empty string if the key isn't found.
      */
     public String getString(String key) {
-        String value = _properties.getProperty(key);
+        String value = properties.getProperty(key);
         
         if (value == null) {
             Aurora.LOGGER.log(Level.WARNING, "Cannot find value by key ''{0}'', empty string returned!", key);
