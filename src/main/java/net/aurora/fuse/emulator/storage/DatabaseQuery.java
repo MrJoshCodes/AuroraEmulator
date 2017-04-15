@@ -133,4 +133,12 @@ public class DatabaseQuery implements Closeable {
             
         }
     }
+
+    public void setObject(int index, Object value) {
+        try {
+            _stmt.setObject(index, value);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

@@ -2,6 +2,8 @@ package net.aurora.fuse.emulator.game.users;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import net.aurora.fuse.emulator.Aurora;
+import net.aurora.fuse.emulator.storage.DatabaseQuery;
 
 /**
  *
@@ -90,5 +92,39 @@ public class User {
         return rank;
     }
     
+    // Coins 
+    public void addCoins(int amount) {
+        coins += amount;
+    }
     
+    public void removeCoins(int amount) {
+        coins -= amount;
+    }
+    
+    public void updateCoins() {
+        try (DatabaseQuery dbQuery = Aurora.getDatabase().create()) {
+            dbQuery.setQuery("UPDATE `users` SET `coins` = ? WHERE `id` = ?");
+            dbQuery.setInt(1, coins);
+            dbQuery.setInt(2, id);
+            dbQuery.execute();
+        }
+    }
+    
+    // Tickets
+    public void addTickets(int amount) {
+        tickets += amount;
+    }
+    
+    public void removeTickets(int amount) {
+        tickets -= amount;
+    }
+    
+    public void updateTickets() {
+        try (DatabaseQuery dbQuery = Aurora.getDatabase().create()) {
+            dbQuery.setQuery("UPDATE `users` SET `tickets` = ? WHERE `id` = ?");
+            dbQuery.setInt(1, tickets);
+            dbQuery.setInt(2, id);
+            dbQuery.execute();
+        }
+    }
 }
