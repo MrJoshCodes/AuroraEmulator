@@ -54,7 +54,7 @@ public class NetworkHandler extends ChannelInboundHandlerAdapter {
     
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable ex) {
-        Aurora.LOGGER.info(ex.getMessage());
+        ex.printStackTrace();
     }
     
 }
