@@ -8,6 +8,7 @@ import net.aurora.fuse.emulator.game.gameclients.GameClient;
 import net.aurora.fuse.emulator.packets.events.handshake.GenerateKeyEvent;
 import net.aurora.fuse.emulator.packets.events.handshake.InfoRetrieveEvent;
 import net.aurora.fuse.emulator.packets.events.handshake.TryLoginEvent;
+import net.aurora.fuse.emulator.packets.events.navigator.NavigateEvent;
 import net.aurora.fuse.emulator.packets.events.purse.GetCreditsEvent;
 import net.aurora.fuse.emulator.packets.events.purse.RedeemVoucherEvent;
 import net.aurora.fuse.emulator.packets.types.ClientMessage;
@@ -33,6 +34,7 @@ public class PacketHandler {
         packetEvents.put(7, new InfoRetrieveEvent());
         packetEvents.put(8, new GetCreditsEvent());
         packetEvents.put(129, new RedeemVoucherEvent());
+        packetEvents.put(150, new NavigateEvent());
         packetEvents.put(202, new GenerateKeyEvent());
     }
     

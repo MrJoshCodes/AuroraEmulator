@@ -1,6 +1,7 @@
 package net.aurora.fuse.emulator.game;
 
 import net.aurora.fuse.emulator.game.gameclients.GameClientManager;
+import net.aurora.fuse.emulator.game.navigator.Navigator;
 import net.aurora.fuse.emulator.game.store.vouchers.VoucherManager;
 import net.aurora.fuse.emulator.game.users.UserManager;
 
@@ -14,6 +15,8 @@ public class Game {
     
     private final VoucherManager voucherManager;
     
+    private final Navigator navigator;
+    
     /**
      * Creates a new instance of the Game class and cache some database stuff and create other instances.
      */
@@ -22,6 +25,8 @@ public class Game {
         userManager = new UserManager();
         
         voucherManager = new VoucherManager();
+        
+        navigator = new Navigator();
     }
     
     public GameClientManager getGameClientManager() {
@@ -34,5 +39,9 @@ public class Game {
     
     public VoucherManager getVouchers() {
         return voucherManager;
+    }
+    
+    public Navigator getNavigator() {
+        return navigator;
     }
 }
