@@ -23,7 +23,7 @@ public class RoomCategory {
             parentId = set.getInt("parent_id");
             type = RoomCategoryType.valueOf(set.getString("type").toUpperCase());
             canTrade = set.getBoolean("can_trade");
-            visible = set.getBoolean("visible");
+            visible = set.getBoolean("is_visible");
         } catch (SQLException ex) {
             
         }

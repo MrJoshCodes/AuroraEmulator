@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import net.aurora.fuse.emulator.Aurora;
+import net.aurora.fuse.emulator.game.rooms.Room;
 import net.aurora.fuse.emulator.packets.types.ServerMessage;
 import net.aurora.fuse.emulator.storage.DatabaseQuery;
 
@@ -63,8 +64,18 @@ public class Navigator {
         response.writeVL64(10000);
         response.writeVL64(category.getParentId());
         
+        LinkedList<Room> rooms = Aurora.getGame().getRooms().getRoomsInCategory(category.getId());
+        
         if (category.getType().equals(RoomCategoryType.PRIVATE)) {
-            response.writeVL64(0); // room count
+            response.writeVL64(rooms.size()); // room count
+            
+            for (Room room : rooms) {
+                room.serializePrivate(response);
+            }
+        } else {
+            for (Room room : rooms) {
+                room.serializePublic(response);
+            }
         }
     }
     
