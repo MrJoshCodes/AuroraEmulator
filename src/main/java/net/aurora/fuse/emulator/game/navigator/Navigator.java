@@ -1,8 +1,8 @@
 package net.aurora.fuse.emulator.game.navigator;
 
-import gnu.trove.map.hash.THashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import net.aurora.fuse.emulator.Aurora;
@@ -15,10 +15,10 @@ import net.aurora.fuse.emulator.storage.DatabaseQuery;
  */
 public class Navigator {
     
-    private final THashMap<Integer, RoomCategory> roomCategories;
+    private final LinkedHashMap<Integer, RoomCategory> roomCategories;
     
     public Navigator() {
-        roomCategories = new THashMap<>();
+        roomCategories = new LinkedHashMap<>();
         
         cacheCategories();
     }
@@ -46,7 +46,7 @@ public class Navigator {
         LinkedList<RoomCategory> subCategories = new LinkedList<>();
         
         for (RoomCategory category : roomCategories.values()) {
-            if (category.getParentId() == categoryId) {
+            if (category.getParentId() == categoryId && category.isVisible()) {
                 subCategories.add(category);
             }
         }
